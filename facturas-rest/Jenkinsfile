@@ -4,19 +4,19 @@ pipeline {
 
         stage("Descargar código de la aplicación"){
             steps{
-                git "url "
+                git "https://github.com/andres0026/apps-dockerizadas.git"
             } 
         }        
 
         stage("Creación de imagen"){
             steps{
-                sh "docker build -t jsalinas/app1 ."
+                sh "docker build -t jsalinas/facturas-node-1 ."
             } 
         }
 
        stage("Ejecución de contenedor"){
            steps {
-               sh "docker run -d --name app1 -p 8080:8080 jsalinas/app1"
+               sh "docker run -d --name app-facturas-node -p 8080:8080 jsalinas/facturas-node-1"
            }
            
         }
@@ -29,9 +29,9 @@ pipeline {
 
         stage("Cerrar recursos"){
            steps {
-                sh "docker stop app1"
-                sh "docker container rm app1" 
-                sh "docker imagen rm areyes/app1"
+                sh "docker stop app-facturas-node"
+                sh "docker container rm app-facturas-nod" 
+                sh "docker imagen rm areyes/app-facturas-nod"
             }            
         }
     }
